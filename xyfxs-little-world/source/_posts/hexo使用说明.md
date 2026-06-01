@@ -144,12 +144,112 @@ public 是 Hexo 生成出来的静态站点文件，不是你直接编辑的源�
 
 ---
 
-## 6. 你现在可以先做的两件事
 
-1. 打开 _config.yml，把 `avatar`、`menu`、`footer` 改成你自己的
-2. 在 _posts 里新建一篇 Markdown 文章，写一句简单的内容
 
-如果你愿意，我可以继续帮你：
-- 讲解 _config.yml 每个配置项的含义
-- 给你一个适合这个主题的首页和文章模板
-- 帮你搭建“关于我”页面和“归档页”内容
+---
+
+**整体框架**
+这是一个基于 Hexo 的静态博客，主题叫 loststar，暗色星空风格，用了 Vue.js 做前端交互。
+
+---
+
+**一、根目录关键文件**
+
+`_config.yml` — 博客全局配置
+- title、author、language 这些基础信息
+- theme: loststar（指定使用哪个主题）
+- deploy: 部署到 Github Pages
+- 还有各种 Hexo 插件的开关
+
+`package.json` — 依赖管理
+- hexo 本体
+- hexo-renderer-ejs（模板引擎）
+- hexo-deployer-git（部署到 GitHub 用）
+
+---
+
+**二、主题配置：themes/loststar/_config.yml**
+
+这是改博客外观的核心文件，控制的东西有：
+- **menu** → 导航栏菜单项（首页、归档、分类、标签等）
+- **avatar** / **background** → 头像、背景图路径
+- **social** → 社交媒体链接（GitHub、Twitter 等）
+- **friends** → 友情链接（友链页面显示）
+- **highlight** → 代码高亮主题（用的 GitHub 风格）
+- **search** → 搜索功能开关
+- **crypto** → 文章加密功能（可以给某些文章设密码）
+- **math** → 数学公式 LaTeX 渲染开关
+
+---
+
+**三、布局模板：themes/loststar/layout/**
+
+这些 .ejs 文件就是页面的 HTML 骨架：
+
+- **layout.ejs** — 页面总框架，把 head、导航栏、内容区、footer 组合在一起
+- **index.ejs** — 首页排版，显示 hero 大图和文章卡片
+- **post.ejs** — 单篇文章页，显示文章标题、正文、标签、评论
+- **card.ejs** — 首页上的文章卡片组件（封面、标题、摘要）
+- **archives.ejs** — 归档页面，按时间线展示所有文章，带搜索框
+- **tags.ejs** — 标签页面，点击标签后显示该标签下的文章
+- **categories.ejs** — 分类页面，跟标签页类似
+- **footer.ejs** — 页脚内容
+
+---
+
+**四、脚本文件：themes/loststar/scripts/**
+
+- **taxonomy-style-helper.js** — 给不同分类/标签分配不同的颜色样式
+- **heading-color-injector.js** — 自动给文章标题注入颜色
+
+---
+
+**五、前端 JS：themes/loststar/source/js/lib/**
+
+每个单独的功能模块：
+- **home.js** — 首页特效（视差滚动、动画）
+- **stars.js** — 星星背景动画（那个星空粒子效果）
+- **search.js** — 文章搜索功能
+- **crypto.js** — 文章加密解锁逻辑
+- **highlight.js** — 代码语法高亮
+- **math.js** — MathJax 数学公式渲染
+- **preview.js** — 图片点击放大预览
+
+**main.js** — Vue 应用入口，控制：
+- 页面加载动画
+- 菜单栏滚动时隐藏/显示
+- Discord 风格的黑条剧透点击揭示
+
+---
+
+**六、CSS 样式：themes/loststar/source/css/main.css**
+
+所有自定义样式全在这个文件里，将近 27000 字符，涵盖了页面布局、颜色、字体、动画、响应式设计等。
+
+---
+
+**七、资源图片**
+
+- avatar.gif / avatar.jpg — 头像
+- background.jpg / bg-main.jpg — 背景图
+- loading.gif — 加载动画
+- star-chubby.svg — 星星图标
+
+---
+
+**八、已有文章：source/_posts/**
+
+已经放了几篇示例文章，包括 hello-world、hexo 使用说明、博客语法说明等。
+
+---
+
+**总结一下改博客你需要动的地方：**
+
+| 想改什么 | 改哪个文件 |
+|---|---|
+| 站点名称、描述、语言 | `_config.yml` 顶部 |
+| 导航菜单、头像、背景图、友链、社交链接 | `themes/loststar/_config.yml` |
+| 页面结构布局 | `themes/loststar/layout/*.ejs` |
+| 颜色、字体、间距等样式 | `themes/loststar/source/css/main.css` |
+| 交互效果、动画 | `themes/loststar/source/js/lib/*.js` |
+| 写新文章 | 在 `source/_posts/` 下新建 .md 文件 |
