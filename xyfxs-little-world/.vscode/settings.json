@@ -3,6 +3,10 @@
         "/^\\.\\\\node_modules\\\\\\.bin\\\\hexo\\.cmd new post \"帝雾刃革征豪万\"$/": {
             "approve": true,
             "matchCommandLine": true
+        },
+        "/^powershell -NoProfile -Command \"Get-ChildItem -Path public -Recurse -Include \\*\\.html \\| Select-String -Pattern '帝雾刃革征豪/帝雾刃革征豪万\\|帝雾刃革征豪万/' \\| ForEach-Object \\{ \\$_\\.Path \\+ ':' \\+ \\$_\\.LineNumber \\+ ' ' \\+ \\$_\\.Line \\}\"$/": {
+            "approve": true,
+            "matchCommandLine": true
         }
     }
 }
