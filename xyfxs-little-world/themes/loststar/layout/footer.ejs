@@ -1,0 +1,25 @@
+<footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy; <%= (theme.footer && theme.footer.since) ? theme.footer.since : date(Date.now(), "YYYY") %>
+            <%= (theme.footer && theme.footer.copyright && theme.footer.copyright.name) ?
+                theme.footer.copyright.name : (config.title || config.author) %>
+            <% if (theme.footer && theme.footer.copyright && theme.footer.copyright.handle) { %>
+            - <%= theme.footer.copyright.handle %>
+            <% } %>
+        </div>
+        <div>
+            Based on the <a href="https://hexo.io">Hexo</a> |
+            <a href="https://github.com/thatnghiep-dev/hexo-theme-loststar">LostStar Theme</a>
+        </div>
+        <% if (theme.footer.ICP.enable) { %>
+        <div>
+            <% if (theme.footer.ICP.link) { %>
+            <a href="<%- url_for(theme.footer.ICP.link) %>"><%= theme.footer.ICP.code %></a>
+            <% } else { %>
+            <%= theme.footer.ICP.code %>
+            <% } %>
+        </div>
+        <% } %>
+    </div>
+</footer>
