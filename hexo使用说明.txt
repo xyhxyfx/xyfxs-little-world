@@ -1,0 +1,2 @@
+1. 新建博客：在xyfxs-little-world\source\_posts目录下新建md文件
+2. 
