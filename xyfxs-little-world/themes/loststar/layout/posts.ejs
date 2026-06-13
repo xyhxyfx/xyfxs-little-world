@@ -49,6 +49,18 @@
             return `<img class="${cls}" src="https://cdn.discordapp.com/emojis/${id}.${ext}" alt=":${name}:" title=":${name}:" loading="lazy" />`;
         });
     };
+    // Rewrite preview image src to point to the post's asset folder so previews work from index pages
+    const rewritePreviewImagePaths = (html, postPath) => {
+        if (!html) return html;
+        // ensure leading slash on postPath
+        const base = ('/' + postPath).replace(/\\+/g, '/');
+        // replace src="images/..." or src='./images/...' with src="/postPath/images/..."
+        return String(html).replace(/src=(['\"])?(?:\.\/)?images\//g, (m, q) => {
+            // q may be undefined if the regex matched without capture, ensure a quote
+            const quote = q || '"';
+            return `src=${quote}${base}images/`;
+        });
+    };
 %>
 <div class="post<%= fxClasses.length ? ' ' + fxClasses.join(' ') : '' %>" <% if (txStyle) { %>data-category="<%- catName %>" style="<%- allVars %>"<% } %>>
     <a href="<%- '/' + post.path %>">
@@ -88,11 +100,11 @@
     <div class="description">
         <div class="content" v-pre>
             <% if (typeof post.description !== "undefined") { %>
-            <%- renderDiscordEmoji(markdown(post.description)) %>
+            <%- renderDiscordEmoji(rewritePreviewImagePaths(markdown(post.description), post.path)) %>
             <% } else if (post.excerpt) { %>
-            <%- renderDiscordEmoji(post.excerpt) %>
+            <%- renderDiscordEmoji(rewritePreviewImagePaths(post.excerpt, post.path)) %>
             <% } else { %>
-            <%- renderDiscordEmoji(post.content) %>
+            <%- renderDiscordEmoji(rewritePreviewImagePaths(post.content, post.path)) %>
             <% } %>
         </div>
     </div>
