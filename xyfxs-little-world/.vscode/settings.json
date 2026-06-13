@@ -7,6 +7,14 @@
         "/^powershell -NoProfile -Command \"Get-ChildItem -Path public -Recurse -Include \\*\\.html \\| Select-String -Pattern '帝雾刃革征豪/帝雾刃革征豪万\\|帝雾刃革征豪万/' \\| ForEach-Object \\{ \\$_\\.Path \\+ ':' \\+ \\$_\\.LineNumber \\+ ' ' \\+ \\$_\\.Line \\}\"$/": {
             "approve": true,
             "matchCommandLine": true
+        },
+        "/^Set-Location -LiteralPath 'e:\\\\Desktop\\\\创作\\\\网站\\\\xyfxs-little-world'; cmd /c \"npm run build\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^Set-Location -LiteralPath 'e:\\\\Desktop\\\\创作\\\\网站\\\\xyfxs-little-world'; git add themes/loststar/layout/posts\\.ejs; git commit -m \"Fix: rewrite preview image src to post asset path in index previews\" ; echo 'no commit \\(maybe no changes\\)'; git push$/": {
+            "approve": true,
+            "matchCommandLine": true
         }
     }
 }
