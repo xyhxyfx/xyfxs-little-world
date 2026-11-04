@@ -1,5 +1,4 @@
 [[headers]]
-  for = "/*/*/*/*/*/*.cpp"
+  for = "/data-structure/*/*.cpp"
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
-    Content-Disposition = "inline"
